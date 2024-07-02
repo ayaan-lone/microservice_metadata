@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.microservice.metadata.dao.CityRepository;
 import com.microservice.metadata.dao.CountryRepository;
 import com.microservice.metadata.dao.StateRepository;
+import com.microservice.metadata.entity.City;
 import com.microservice.metadata.entity.Country;
 import com.microservice.metadata.entity.State;
 import com.microservice.metadata.service.AddressService;
@@ -16,12 +18,14 @@ public class AddressServiceImpl implements AddressService {
 
 	private final CountryRepository countryRepository;
 	private final StateRepository stateRepository;
+	private final CityRepository cityRepository;
 
 	@Autowired
-	public AddressServiceImpl(CountryRepository countryRepository, StateRepository stateRepository) {
+	public AddressServiceImpl(CountryRepository countryRepository, StateRepository stateRepository, CityRepository cityRepository) {
 		super();
 		this.countryRepository = countryRepository;
 		this.stateRepository = stateRepository;
+		this.cityRepository = cityRepository;
 	}
 
 	@Override
@@ -33,6 +37,12 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public List<State> getStatesByCountryId(Long countryId) {
 		return stateRepository.findByCountryId(countryId);
+	}
+
+	@Override
+	public List<City> getCityByStateId(Long stateId) {
+		// TODO Auto-generated method stub
+		return cityRepository.findByStateId(stateId);
 	}
 
 }
