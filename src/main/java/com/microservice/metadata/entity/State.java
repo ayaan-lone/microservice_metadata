@@ -1,4 +1,6 @@
 package com.microservice.metadata.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +14,8 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
+
+@JsonIgnoreProperties("country")
 public class State {
 
     @Id
