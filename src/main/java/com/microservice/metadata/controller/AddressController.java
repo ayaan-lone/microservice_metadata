@@ -37,17 +37,23 @@ public class AddressController {
 	}
 	
 	
-	@GetMapping("country/{id}state")
+	@GetMapping("country/{id}/state")
 	public ResponseEntity<List<State>> getAllStates(@PathVariable Long id){
 		List<State> response = addressService.getStatesByCountryId(id);
 		return  ResponseEntity.status(HttpStatus.OK).body(response);
 		
 	}
 	
-	@GetMapping("state/{stateId}city")
+	@GetMapping("state/{stateId}/city")
 	public ResponseEntity<List<City>> getAllCities(@PathVariable Long stateId){
 		List<City> response = addressService.getCityByStateId(stateId);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
+//	
+//	@GetMapping("country/{countryId}/state/{stateId}/city")
+//	public ResponseEntity<List<City>> getAllCitiesFromCountry(@PathVariable Long countryId, @PathVariable Long stateId){
+//		List<City> response = addressService.getCityByCountryAndStateId(countryId, stateId);
+//		return ResponseEntity.status(HttpStatus.OK).body(response);
+//	}
 }

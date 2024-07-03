@@ -41,8 +41,13 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public List<City> getCityByStateId(Long stateId) {
-		// TODO Auto-generated method stub
 		return cityRepository.findByStateId(stateId);
+	}
+
+	@Override
+	public List<City> getCityByCountryAndStateId(Long countryId, Long stateId) {
+		return cityRepository.findByCountryIdAndStateId(countryId, stateId);
+		
 	}
 
 }

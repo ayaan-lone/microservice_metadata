@@ -8,4 +8,6 @@ import com.microservice.metadata.entity.City;
 
 public interface CityRepository extends JpaRepository<City, Long> {
 	List<City> findByStateId(Long stateId);
+
+//	List<City> findByCountryIdAndStateId(Long countryId, Long stateId);
 }

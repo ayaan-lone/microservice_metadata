@@ -12,5 +12,6 @@ public interface AddressService {
     List<State> getStatesByCountryId(Long id);
     
     List<City> getCityByStateId(Long id);
+    List<City> getCityByCountryAndStateId(Long countryId, Long stateId);
 
 }
