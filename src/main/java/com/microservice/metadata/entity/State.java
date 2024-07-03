@@ -1,4 +1,6 @@
 package com.microservice.metadata.entity;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -22,9 +24,12 @@ public class State {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique=true)
     private String name;
 
+    @OneToMany(mappedBy = "state", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<City> cities;
+    
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
