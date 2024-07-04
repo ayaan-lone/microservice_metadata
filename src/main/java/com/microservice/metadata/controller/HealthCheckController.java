@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class HealthCheckController {
-	
+
 	@GetMapping("health-check")
-	ResponseEntity<String> healthCheck(){
+	ResponseEntity<String> healthCheck() {
 		return ResponseEntity.status(HttpStatus.OK).body("Metadata microservice is working");
 	}
 }

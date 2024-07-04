@@ -10,49 +10,43 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.metadata.entity.City;
 import com.microservice.metadata.entity.Country;
-import com.microservice.metadata.entity.State;
 import com.microservice.metadata.exception.MetadataException;
+import com.microservice.metadata.response.CityDto;
+import com.microservice.metadata.response.StateDto;
 import com.microservice.metadata.service.AddressService;
+
 @RequestMapping("/api/v1/")
 @RestController
 public class AddressController {
-	
-	
+
 	private final AddressService addressService;
-	
+
 	@Autowired
-	public AddressController(  AddressService addressService) {
-		this.addressService= addressService;
+	public AddressController(AddressService addressService) {
+		this.addressService = addressService;
 	}
-	
+
 	@GetMapping("country")
-	public ResponseEntity<List<Country>> getAllCountries(){
-		
+	public ResponseEntity<List<Country>> getAllCountries() {
+
 		List<Country> response = addressService.getAllCountries();
-		return  ResponseEntity.status(HttpStatus.OK).body(response);
-		
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+
 	}
-	
-	
+
 	@GetMapping("country/{id}/state")
-	public ResponseEntity<List<State>> getAllStates(@PathVariable Long id) throws MetadataException{
-		List<State> response = addressService.getStatesByCountryId(id);
-		return  ResponseEntity.status(HttpStatus.OK).body(response);
-		
+	public ResponseEntity<List<StateDto>> getAllStates(@PathVariable Long id) throws MetadataException {
+		List<StateDto> response = addressService.getStatesByCountryId(id);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+
 	}
-	
+
 	@GetMapping("state/{stateId}/city")
-	public ResponseEntity<List<City>> getAllCities(@PathVariable Long stateId) throws MetadataException{
-		List<City> response = addressService.getCityByStateId(stateId);
+	public ResponseEntity<List<CityDto>> getAllCities(@PathVariable Long stateId) throws MetadataException {
+		List<CityDto> response = addressService.getCityByStateId(stateId);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
-//	
-//	@GetMapping("country/{countryId}/state/{stateId}/city")
-//	public ResponseEntity<List<City>> getAllCitiesFromCountry(@PathVariable Long countryId, @PathVariable Long stateId){
-//		List<City> response = addressService.getCityByCountryAndStateId(countryId, stateId);
-//		return ResponseEntity.status(HttpStatus.OK).body(response);
-//	}
+
 }
