@@ -28,6 +28,6 @@ public class CardServiceImpl implements CardService {
 	@Override
 	public Card createCard(Card card) {
 		return cardRepository.save(card);
-		
+
 	}
 }
