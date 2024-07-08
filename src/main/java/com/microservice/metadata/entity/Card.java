@@ -25,7 +25,8 @@ public class Card {
     private Account accountType;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    private List<Service> services;
+    private List<BankService> bankServices;
+
 
 	public String getName() {
 		return name;
@@ -43,13 +44,15 @@ public class Card {
 		this.accountType = accountType;
 	}
 
-	public List<Service> getServices() {
-		return services;
+	public List<BankService> getBankServices() {
+		return bankServices;
 	}
 
-	public void setServices(List<Service> services) {
-		this.services = services;
+	public void setBankServices(List<BankService> bankServices) {
+		this.bankServices = bankServices;
 	}
+
+
 
     
 }
