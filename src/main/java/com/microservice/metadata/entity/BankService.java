@@ -16,8 +16,8 @@ public class BankService {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "card_type_id")
-    private Card cardType;
+    @JoinColumn(name = "card_id")
+    private Card card;
 
 	public String getName() {
 		return name;
@@ -28,11 +28,11 @@ public class BankService {
 	}
 
 	public Card getCardType() {
-		return cardType;
+		return card;
 	}
 
-	public void setCardType(Card cardType) {
-		this.cardType = cardType;
+	public void setCardType(Card card) {
+		this.card = card;
 	}
 
 }
