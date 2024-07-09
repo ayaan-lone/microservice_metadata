@@ -57,7 +57,9 @@ public class AddressServiceImpl implements AddressService {
 		if (stateRepository.findById(stateId) == null) {
 			throw new MetadataException(HttpStatus.NOT_FOUND, "State not found");
 		}
+		System.out.println("Adityasss");
 		List<City> cities = cityRepository.findByStateId(stateId);
+		System.out.println("AA");
 		return cities.stream().map(city -> modelMapper.map(city, CityDto.class)).collect(Collectors.toList());
 
 	}
