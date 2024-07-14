@@ -10,4 +10,8 @@ public interface AccountService {
 	Account getAccountById(Long id);
 
 	Account createAccount(Account account);
+
+	String getAccountTypeByAccountId(Long accountId);
+
+	String getCardTypeByAccountId(Long accountId);
 }

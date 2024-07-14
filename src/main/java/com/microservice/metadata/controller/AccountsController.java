@@ -18,7 +18,7 @@ import com.microservice.metadata.service.BankServiceService;
 import com.microservice.metadata.service.CardService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class AccountsController {
 
 	@Autowired
@@ -40,6 +40,12 @@ public class AccountsController {
 		return accountService.getAccountById(id);
 	}
 
+    // Endpoint to fetch account type by account ID
+    @GetMapping("/accountType/{accountId}")
+    public String getAccountTypeByAccountId(@PathVariable Long accountId) {
+        return accountService.getAccountTypeByAccountId(accountId);
+    }
+
 	@PostMapping("/accounts")
 	public Account createAccount(@RequestBody Account account) {
 		return accountService.createAccount(account);
@@ -55,6 +61,11 @@ public class AccountsController {
 	public Card getCardById(@PathVariable Long id) {
 		return cardService.getCardById(id);
 	}
+	 // Endpoint to fetch card type by account ID
+    @GetMapping("/cardType/{accountId}")
+    public String getCardTypeByAccountId(@PathVariable Long accountId) {
+        return accountService.getCardTypeByAccountId(accountId);
+    }
 
 	@PostMapping("/cards")
 	public Card createCard(@RequestBody Card card) {
