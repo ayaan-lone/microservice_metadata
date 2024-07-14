@@ -20,7 +20,15 @@ public class Card {
 
     private String name;
 
-    @ManyToOne
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@ManyToOne
     @JoinColumn(name = "account_id")
     private Account accountType;
 
