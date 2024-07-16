@@ -19,6 +19,22 @@ public class BankService {
     @JoinColumn(name = "card_id")
     private Card card;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
 	public String getName() {
 		return name;
 	}
