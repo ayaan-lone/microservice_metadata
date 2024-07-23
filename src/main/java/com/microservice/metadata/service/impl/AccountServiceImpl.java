@@ -9,6 +9,7 @@ import com.microservice.metadata.dao.AccountRepository;
 import com.microservice.metadata.dao.CardRepository;
 import com.microservice.metadata.entity.Account;
 import com.microservice.metadata.entity.Card;
+import com.microservice.metadata.response.CardResponseDto;
 import com.microservice.metadata.service.AccountService;
 
 @Service
@@ -47,11 +48,16 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public String getCardTypeByAccountId(Long accountId) {
+	public CardResponseDto getCardTypeByAccountId(Long accountId) {
 		 Card card = cardRepository.findById(accountId)
 	                .orElseThrow(() -> new RuntimeException("Account not found with id: " + accountId));
 
 	        // Assuming Account entity has a field for accountType
-	        return card.getName();
+		       return new CardResponseDto(
+		            card.getId(),
+		            card.getName(),
+		            card.getDaily_limit(),
+		            card.getMonthly_limit()
+		    );
 	}
 }
