@@ -3,6 +3,7 @@ package com.microservice.metadata.service;
 import java.util.List;
 
 import com.microservice.metadata.entity.Account;
+import com.microservice.metadata.response.CardResponseDto;
 
 public interface AccountService {
 	List<Account> getAllAccounts();
@@ -13,5 +14,5 @@ public interface AccountService {
 
 	String getAccountTypeByAccountId(Long accountId);
 
-	String getCardTypeByAccountId(Long accountId);
+	CardResponseDto getCardTypeByAccountId(Long accountId);
 }
