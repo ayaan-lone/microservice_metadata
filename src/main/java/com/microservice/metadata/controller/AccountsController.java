@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.metadata.entity.Account;
-
 import com.microservice.metadata.entity.Card;
 import com.microservice.metadata.exception.MetadataException;
+import com.microservice.metadata.response.CardResponseDto;
 import com.microservice.metadata.service.AccountService;
 import com.microservice.metadata.service.CardService;
 
@@ -31,7 +31,6 @@ public class AccountsController {
 
 	@Autowired
 	private CardService cardService;
-
 
 
 	@GetMapping("/accounts")
@@ -76,7 +75,7 @@ public class AccountsController {
 	
 	 // End-point to fetch card type by account ID
     @GetMapping("/cardType/{accountId}")
-    public String getCardTypeByAccountId(@PathVariable Long accountId) {
+    public CardResponseDto getCardTypeByAccountId(@PathVariable Long accountId) {
         return accountService.getCardTypeByAccountId(accountId);
     }
 
