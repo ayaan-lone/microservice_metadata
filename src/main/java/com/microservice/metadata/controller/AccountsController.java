@@ -3,6 +3,9 @@ package com.microservice.metadata.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.metadata.entity.Account;
 import com.microservice.metadata.entity.Card;
+import com.microservice.metadata.exception.MetadataException;
 import com.microservice.metadata.response.CardResponseDto;
 import com.microservice.metadata.service.AccountService;
 import com.microservice.metadata.service.CardService;
 
+
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:5500/")   
 public class AccountsController {
 
 	@Autowired
@@ -37,7 +43,7 @@ public class AccountsController {
 		return accountService.getAccountById(id);
 	}
 
-    // Endpoint to fetch account type by account ID
+    // End-point to fetch account type by account ID
     @GetMapping("/accountType/{accountId}")
     public String getAccountTypeByAccountId(@PathVariable Long accountId) {
         return accountService.getAccountTypeByAccountId(accountId);
@@ -48,7 +54,7 @@ public class AccountsController {
 		return accountService.createAccount(account);
 	}
 
-	// Card endpoints
+	// Card End-points
 	@GetMapping("/cards")
 	public List<Card> getAllCards() {
 		return cardService.getAllCards();
@@ -58,7 +64,16 @@ public class AccountsController {
 	public Card getCardById(@PathVariable Long id) {
 		return cardService.getCardById(id);
 	}
-	 // Endpoint to fetch card type by account ID
+	
+	// Fetch Card Data on the basis of AccountId
+	@GetMapping("/account/cards/{accountId}")
+	ResponseEntity<List<Card>> getCardByaccountId(@PathVariable Long accountId) throws MetadataException {
+		List<Card> response = cardService.getCardByAccountId(accountId);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	
+	 // End-point to fetch card type by account ID
     @GetMapping("/cardType/{accountId}")
     public CardResponseDto getCardTypeByAccountId(@PathVariable Long accountId) {
         return accountService.getCardTypeByAccountId(accountId);
